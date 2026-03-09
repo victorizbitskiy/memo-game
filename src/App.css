@@ -1,0 +1,217 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #1f2937, #020617);
+  color: #f9fafb;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#root {
+  padding: 2rem;
+}
+
+.app {
+  width: 420px; /* фиксированная ширина приложения, чтобы длинный текст не растягивал его */
+  max-width: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow:
+    0 40px 80px rgba(15, 23, 42, 0.8),
+    0 0 0 1px rgba(15, 23, 42, 0.9);
+  padding: 1.75rem 1.75rem 2rem;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin: 0;
+}
+
+.score {
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(15, 118, 110, 0.2);
+  border: 1px solid rgba(45, 212, 191, 0.6);
+  color: #a5f3fc;
+  font-size: 0.95rem;
+  min-width: 110px; /* фиксируем ширину под "Очки: 9999" */
+  text-align: center;
+  font-feature-settings: 'tnum' 1; /* табличные цифры, чтобы не прыгала ширина */
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  perspective: 1000px;
+}
+
+.card:focus,
+.card:focus-visible {
+  outline: none;
+}
+
+.card:disabled {
+  cursor: default;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  overflow: hidden;
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.card:not(.card--flipped):hover .card-inner {
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.9);
+  border-color: rgba(56, 189, 248, 0.8);
+}
+
+.card--matched .card-inner {
+  border-color: rgba(34, 197, 94, 0.9);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  font-size: 2.5rem;
+  user-select: none;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.card-face--front {
+  background: radial-gradient(circle at 20% 0, #38bdf8, #0f172a);
+  color: #e5e7eb;
+  font-weight: 700;
+  font-size: 2.2rem;
+  opacity: 1;
+}
+
+.card-face--back {
+  background: radial-gradient(circle at 80% 0, #22c55e, #0f172a);
+  font-size: 2.6rem;
+  line-height: 1;
+  font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji',
+    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  opacity: 0;
+}
+
+.card--flipped .card-face--front {
+  opacity: 0;
+}
+
+.card--flipped .card-face--back {
+  opacity: 1;
+}
+
+.card-emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8em;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  min-height: 3.2rem; /* резервируем место под сообщение, чтобы появление текста не расширяло макет */
+}
+
+.reset-button {
+  border-radius: 999px;
+  padding: 0.5rem 1.3rem;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  background: linear-gradient(135deg, #22c55e, #22d3ee);
+  color: #022c22;
+  box-shadow: 0 12px 24px rgba(34, 211, 238, 0.45);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    filter 0.15s ease;
+}
+
+.reset-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px rgba(34, 211, 238, 0.55);
+  filter: brightness(1.05);
+}
+
+.reset-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 8px 16px rgba(34, 211, 238, 0.4);
+}
+
+.message {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #e5e7eb;
+  max-width: 100%;
+  white-space: normal;
+  word-break: break-word;
+}
+
+@media (max-width: 600px) {
+  .app {
+    padding: 1.3rem 1.2rem 1.6rem;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .board {
+    gap: 0.75rem;
+  }
+
+  .card-face {
+    font-size: 2.1rem;
+  }
+}
