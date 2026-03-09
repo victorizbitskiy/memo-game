@@ -2,7 +2,8 @@
 
 A simple memory game built with **React** and **TypeScript**.  
 Flip animal cards, find matching pairs, and score points.  
-Created together with an AI coding assistant.
+
+**Created together with an AI coding assistant.**
 
 ## Features
 
