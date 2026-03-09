@@ -39,5 +39,5 @@ Then open the printed URL (usually `http://localhost:5173`) in your browser.
 3. Click a second card:
    - If the two emojis match, both cards stay face up and you earn **100 points**.
    - If they do not match, both cards flip back after **0.5 seconds**.
-4. When all pairs are found, the final score is shown, and you can start a new game with the **"Начать заново"** button.
+4. When all pairs are found, the final score is shown, and you can start a new game with the **"Restart"** button.
 
