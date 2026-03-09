@@ -5,6 +5,8 @@ Flip animal cards, find matching pairs, and score points.
 
 **Created together with an AI coding assistant.**
 
+<img src="https://github.com/victorizbitskiy/memo-game/blob/main/docs/img/image.png"/>
+
 ## Features
 
 - 2×3 board with animal emoji cards
