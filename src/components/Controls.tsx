@@ -8,16 +8,15 @@ export function Controls({ onReset, allMatched, score }: ControlsProps) {
   return (
     <div className="controls">
       <button className="reset-button" onClick={onReset}>
-        Начать заново
+        Restart
       </button>
       <p
         className={`message ${
           allMatched ? 'message--visible' : 'message--hidden'
         }`}
       >
-        Все пары найдены! Ваш результат: {score} очков.
+        All pairs matched! Your score: {score} points.
       </p>
     </div>
   )
 }
-

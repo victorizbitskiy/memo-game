@@ -198,6 +198,16 @@ body {
   word-break: break-word;
 }
 
+.message--hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.message--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
 @media (max-width: 600px) {
   .app {
     padding: 1.3rem 1.2rem 1.6rem;
